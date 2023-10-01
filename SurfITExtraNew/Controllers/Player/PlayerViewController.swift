@@ -185,19 +185,14 @@ class PlayerViewController: UIViewController {
             
             playPauseButton.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             playPauseButton.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 80),
-            //            playPauseButton.widthAnchor.constraint(equalToConstant: 50),
-            //            playPauseButton.heightAnchor.constraint(equalToConstant: 50),
+         
             
             forwardButton.topAnchor.constraint(equalTo: playPauseButton.topAnchor, constant: 2),
             forwardButton.leadingAnchor.constraint(equalTo: playPauseButton.trailingAnchor, constant: 40),
-            //            forwardButton.widthAnchor.constraint(equalToConstant: 50),
-            //            forwardButton.heightAnchor.constraint(equalToConstant: 50),
-            
+  
             backButton.topAnchor.constraint(equalTo: playPauseButton.topAnchor, constant: 3),
             backButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -40),
-            //            backButton.widthAnchor.constraint(equalToConstant: 50),
-            //            backButton.heightAnchor.constraint(equalToConstant: 50),
-            //
+         
             
             closeButton.topAnchor.constraint(equalTo: holder.topAnchor, constant: 5),
             closeButton.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 5),
@@ -211,9 +206,6 @@ class PlayerViewController: UIViewController {
         super.viewWillDisappear(animated)
         player?.stop()
         
-        //        if let player = player {
-        //            player.stop()
-        //        }
     }
     
     
@@ -265,10 +257,7 @@ class PlayerViewController: UIViewController {
     }
     
     @objc private func closePlayerController(){
-//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "trackList") as? TrackListViewController else {return}
-//
-//
-//        present(vc, animated: true)
+
         dismiss(animated: true, completion: nil)
 
         }
