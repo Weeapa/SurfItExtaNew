@@ -19,11 +19,12 @@ class PlayerViewController: UIViewController {
     private let slider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(timeActionSlieder), for: .touchUpInside)
         return slider
     }()
     
     private let closeButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(" Close", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -108,6 +109,7 @@ class PlayerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if holder.subviews.count == 0{
+            
             configure()
         }
     }
@@ -145,15 +147,17 @@ class PlayerViewController: UIViewController {
             }
             
             player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
             
             guard let player = player else {
                 return
             }
             
-            
+
             changeImagePlayPause()
             
-//            player.play()
+             player.play()
+
         } catch {
             print("configure error")
         }
@@ -191,14 +195,14 @@ class PlayerViewController: UIViewController {
             
             playPauseButton.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             playPauseButton.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 80),
-         
+            
             
             forwardButton.topAnchor.constraint(equalTo: playPauseButton.topAnchor, constant: 2),
             forwardButton.leadingAnchor.constraint(equalTo: playPauseButton.trailingAnchor, constant: 40),
-  
+            
             backButton.topAnchor.constraint(equalTo: playPauseButton.topAnchor, constant: 3),
             backButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -40),
-         
+            
             
             closeButton.topAnchor.constraint(equalTo: holder.topAnchor, constant: 5),
             closeButton.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 5),
@@ -224,6 +228,7 @@ class PlayerViewController: UIViewController {
     
     @objc private func playPauseButtonAction(){
         changeImagePlayPause()
+        slider.maximumValue = Float(player!.duration)
         
     }
     
@@ -267,11 +272,23 @@ class PlayerViewController: UIViewController {
     }
     
     @objc private func closePlayerController(){
-
+        
         dismiss(animated: true, completion: nil)
-
-        }
+        
     }
+    
+    @objc private func updateSlider (){
+        slider.value = Float(player?.currentTime ?? 0)
+    }
+    
+    @objc private func timeActionSlieder(){
+        player?.stop()
+        player?.currentTime = TimeInterval(slider.value)
+        player?.prepareToPlay()
+        player?.play()
+    }
+    
+}
 
 
 
