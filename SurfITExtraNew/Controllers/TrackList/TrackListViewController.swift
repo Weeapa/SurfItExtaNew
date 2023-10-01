@@ -16,21 +16,24 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func configureSong(){
-        songs.append(Song(name: "name1",
-                          artistName: "artist1",
-                          albumName: "album1",
+        songs.append(Song(name: "Зима/Лето",
+                          artistName: "Вивальди",
+                          albumName: "Без альбома",
                           trackName: "classic1"))
-        songs.append(Song(name: "name2",
-                          artistName: " ",
-                          albumName: "album2",
+        
+        songs.append(Song(name: "К Элизе",
+                          artistName: "Бетховен",
+                          albumName: "Без альбома",
                           trackName: "classic2"))
-        songs.append(Song(name: "name3",
-                          artistName: "artist3",
-                          albumName: "album3",
+        
+        songs.append(Song(name: "Симфония №5",
+                          artistName: "Бетховен",
+                          albumName: "Без альбома",
                           trackName: "classic3"))
-        songs.append(Song(name: "name4",
-                          artistName: "artist4",
-                          albumName: "album4",
+        
+        songs.append(Song(name: "Скрипка и фортепиано",
+                          artistName: "Unnowed",
+                          albumName: "Без альбома",
                           trackName: "classic4"))
                     
         
@@ -44,7 +47,7 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let song = songs[indexPath.row]
         cell.textLabel?.text = song.name
-        cell.detailTextLabel?.text = song.albumName
+        cell.detailTextLabel?.text = song.artistName
         
         cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
         cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 16)

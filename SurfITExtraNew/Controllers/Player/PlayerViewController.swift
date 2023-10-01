@@ -27,6 +27,7 @@ class PlayerViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -34,6 +35,7 @@ class PlayerViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -94,7 +96,21 @@ class PlayerViewController: UIViewController {
     
     // MARK: - Private methods
     
-    
+    private func changeImagePlayPause(){
+        if player?.isPlaying == true{
+            player?.pause()
+            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
+            let symbolImage = UIImage(systemName: "play.fill", withConfiguration: symbolConfiguration)
+            playPauseButton.setImage(symbolImage, for: .normal)
+            
+        }
+        else{
+            player?.play()
+            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
+            let symbolImage = UIImage(systemName: "pause.fill", withConfiguration: symbolConfiguration)
+            playPauseButton.setImage(symbolImage, for: .normal)
+        }
+    }
     
     
     private func configure(){
@@ -117,19 +133,7 @@ class PlayerViewController: UIViewController {
             }
             
             
-            if player.isPlaying == true{
-                player.pause()
-                let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
-                let symbolImage = UIImage(systemName: "play.fill", withConfiguration: symbolConfiguration)
-                playPauseButton.setImage(symbolImage, for: .normal)
-                
-            }
-            else{
-                player.play()
-                let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
-                let symbolImage = UIImage(systemName: "pause.fill", withConfiguration: symbolConfiguration)
-                playPauseButton.setImage(symbolImage, for: .normal)
-            }
+            changeImagePlayPause()
             
             player.play()
         } catch {
@@ -152,17 +156,17 @@ class PlayerViewController: UIViewController {
             songNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             songNameLabel.centerYAnchor.constraint(equalTo: holder.centerYAnchor),
             songNameLabel.heightAnchor.constraint(equalToConstant: 70),
-            songNameLabel.widthAnchor.constraint(equalToConstant: 70),
+            songNameLabel.widthAnchor.constraint(equalToConstant: 300),
             
             artistNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             artistNameLabel.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: -30),
             artistNameLabel.heightAnchor.constraint(equalToConstant: 70),
-            artistNameLabel.widthAnchor.constraint(equalToConstant: 70),
+            artistNameLabel.widthAnchor.constraint(equalToConstant: 100),
             
             albumNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: -30),
             albumNameLabel.heightAnchor.constraint(equalToConstant: 70),
-            albumNameLabel.widthAnchor.constraint(equalToConstant: 70),
+            albumNameLabel.widthAnchor.constraint(equalToConstant: 200),
             
             playPauseButton.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             playPauseButton.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 80),
@@ -197,19 +201,7 @@ class PlayerViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func playPauseButtonAction(){
-        if player?.isPlaying == true{
-            player?.pause()
-            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
-            let symbolImage = UIImage(systemName: "play.fill", withConfiguration: symbolConfiguration)
-            playPauseButton.setImage(symbolImage, for: .normal)
-            
-        }
-        else{
-            player?.play()
-            let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 33)
-            let symbolImage = UIImage(systemName: "pause.fill", withConfiguration: symbolConfiguration)
-            playPauseButton.setImage(symbolImage, for: .normal)
-        }
+        changeImagePlayPause()
         
     }
     
