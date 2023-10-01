@@ -72,7 +72,7 @@ class PlayerViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 25)
-        let symbolImage = UIImage(systemName: "backward.fill", withConfiguration: symbolConfiguration)
+        let symbolImage = UIImage(systemName: "backward.end.fill", withConfiguration: symbolConfiguration)
         button.setImage(symbolImage, for: .normal)
         button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
@@ -84,9 +84,9 @@ class PlayerViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let symbolConfiguration = UIImage.SymbolConfiguration(pointSize: 25)
-        let symbolImage = UIImage(systemName: "forward.fill", withConfiguration: symbolConfiguration)
+        let symbolImage = UIImage(systemName: "forward.end.fill", withConfiguration: symbolConfiguration)
         button.setImage(symbolImage, for: .normal)
-        button.addTarget(self, action: #selector(forwardButtonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(forwardButtonAction(_:)), for: .touchUpInside)
         
         return button
     }()
@@ -111,6 +111,7 @@ class PlayerViewController: UIViewController {
         if holder.subviews.count == 0{
             
             configure()
+            
         }
     }
     
@@ -147,13 +148,13 @@ class PlayerViewController: UIViewController {
             }
             
             player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
-            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+            
+            Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
             
             guard let player = player else {
                 return
             }
             
-
             changeImagePlayPause()
             
              player.play()
@@ -177,6 +178,11 @@ class PlayerViewController: UIViewController {
         holder.addSubview(closeButton)
         holder.addSubview(slider)
         
+        setupConstraints()
+      
+    }
+    
+    private func setupConstraints(){
         NSLayoutConstraint.activate([
             songNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             songNameLabel.centerYAnchor.constraint(equalTo: holder.centerYAnchor),
@@ -251,7 +257,7 @@ class PlayerViewController: UIViewController {
         
     }
     
-    @objc private func forwardButtonAction(){
+    @objc private func forwardButtonAction(_ sender: UIButton){
         
         if position < (songs.count - 1) {
             position = position + 1
@@ -277,7 +283,7 @@ class PlayerViewController: UIViewController {
         
     }
     
-    @objc private func updateSlider (){
+    @objc private func updateSlider (_ sender: UISlider){
         slider.value = Float(player?.currentTime ?? 0)
     }
     
@@ -292,3 +298,8 @@ class PlayerViewController: UIViewController {
 
 
 
+extension PlayerViewController: AVAudioPlayerDelegate{
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        forwardButtonAction(forwardButton)
+    }
+}
