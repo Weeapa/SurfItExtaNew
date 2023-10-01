@@ -16,6 +16,11 @@ class PlayerViewController: UIViewController {
     // MARK: - Subviews
     
     
+    private let slider: UISlider = {
+        let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
     
     private let closeButton: UIButton = {
        let button = UIButton()
@@ -148,7 +153,7 @@ class PlayerViewController: UIViewController {
             
             changeImagePlayPause()
             
-            player.play()
+//            player.play()
         } catch {
             print("configure error")
         }
@@ -166,6 +171,7 @@ class PlayerViewController: UIViewController {
         holder.addSubview(forwardButton)
         
         holder.addSubview(closeButton)
+        holder.addSubview(slider)
         
         NSLayoutConstraint.activate([
             songNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
@@ -197,7 +203,11 @@ class PlayerViewController: UIViewController {
             closeButton.topAnchor.constraint(equalTo: holder.topAnchor, constant: 5),
             closeButton.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 5),
             closeButton.heightAnchor.constraint(equalToConstant: 100),
-            closeButton.widthAnchor.constraint(equalToConstant: 100)
+            closeButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            slider.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 20),
+            slider.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 20),
+            slider.trailingAnchor.constraint(equalTo: holder.trailingAnchor, constant: -20),
             
         ])
     }
