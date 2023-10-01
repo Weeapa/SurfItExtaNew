@@ -8,11 +8,24 @@ class PlayerViewController: UIViewController {
     
     
     
-    
-    
     public var position: Int = 0
     public var songs:[Song] = []
     var player: AVAudioPlayer?
+    
+    
+    // MARK: - Subviews
+    
+    
+    
+    private let closeButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(" Close", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.setImage(UIImage(systemName: "multiply"), for: .normal)
+        button.addTarget(self, action: #selector(closePlayerController), for: .touchUpInside)
+        return button
+    }()
     
     
     private let songNameLabel: UILabel = {
@@ -152,6 +165,8 @@ class PlayerViewController: UIViewController {
         holder.addSubview(backButton)
         holder.addSubview(forwardButton)
         
+        holder.addSubview(closeButton)
+        
         NSLayoutConstraint.activate([
             songNameLabel.centerXAnchor.constraint(equalTo: holder.centerXAnchor),
             songNameLabel.centerYAnchor.constraint(equalTo: holder.centerYAnchor),
@@ -183,6 +198,11 @@ class PlayerViewController: UIViewController {
             //            backButton.widthAnchor.constraint(equalToConstant: 50),
             //            backButton.heightAnchor.constraint(equalToConstant: 50),
             //
+            
+            closeButton.topAnchor.constraint(equalTo: holder.topAnchor, constant: 5),
+            closeButton.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 5),
+            closeButton.heightAnchor.constraint(equalToConstant: 100),
+            closeButton.widthAnchor.constraint(equalToConstant: 100)
             
         ])
     }
@@ -243,7 +263,16 @@ class PlayerViewController: UIViewController {
             configure()
         }
     }
-}
+    
+    @objc private func closePlayerController(){
+//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "trackList") as? TrackListViewController else {return}
+//
+//
+//        present(vc, animated: true)
+        dismiss(animated: true, completion: nil)
+
+        }
+    }
 
 
 
