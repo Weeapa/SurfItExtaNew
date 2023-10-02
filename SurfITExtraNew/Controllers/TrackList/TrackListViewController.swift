@@ -1,4 +1,5 @@
 import UIKit
+import AVFAudio
 
 class TrackListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,22 +20,26 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         songs.append(Song(name: "Зима/Лето",
                           artistName: "Вивальди",
                           albumName: "Без альбома",
-                          trackName: "classic1"))
+                          trackName: "classic1",
+                          durations: "06:00"))
         
         songs.append(Song(name: "К Элизе",
                           artistName: "Бетховен",
                           albumName: "Без альбома",
-                          trackName: "classic2"))
+                          trackName: "classic2",
+                          durations: "06:00"))
         
         songs.append(Song(name: "Симфония №5",
                           artistName: "Бетховен",
                           albumName: "Без альбома",
-                          trackName: "classic3"))
+                          trackName: "classic3",
+                          durations: "06:00"))
         
         songs.append(Song(name: "Скрипка и фортепиано",
                           artistName: "Unnowed",
                           albumName: "Без альбома",
-                          trackName: "classic4"))
+                          trackName: "classic4",
+                          durations: "06:00"))
                     
         
     }
@@ -47,15 +52,17 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
         
+        cell.trackLabel.text = song.name
         cell.artistLabel.text = song.artistName
-        cell.nameLabel.text = song.name
+        cell.durattionLabel.text = song.durations
+       
 //        cell.textLabel?.text = song.name
 //        cell.detailTextLabel?.text = song.artistName
 //
 //        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
 //        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 16)
 //
-//        cell.accessoryType = .disclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

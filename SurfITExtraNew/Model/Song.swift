@@ -7,4 +7,5 @@ struct Song{
     let artistName: String
     let albumName: String
     let trackName: String
+    let durations: String
 }
