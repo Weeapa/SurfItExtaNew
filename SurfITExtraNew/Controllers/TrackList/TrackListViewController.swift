@@ -52,16 +52,10 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
         
-//        cell.trackLabel.text = song.
         cell.artistLabel.text = song.fullName
         cell.durattionLabel.text = song.durations
        
-//        cell.textLabel?.text = song.name
-//        cell.detailTextLabel?.text = song.artistName
-//
-//        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
-//        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 16)
-//
+
         cell.accessoryType = .disclosureIndicator
         
         return cell
