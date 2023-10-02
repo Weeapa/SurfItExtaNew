@@ -21,13 +21,13 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
                           artistName: "Вивальди",
                           albumName: "Без альбома",
                           trackName: "classic1",
-                          durations: "06:00"))
+                          durations: "01:20"))
         
         songs.append(Song(name: "К Элизе",
                           artistName: "Бетховен",
                           albumName: "Без альбома",
                           trackName: "classic2",
-                          durations: "06:00"))
+                          durations: "02:25"))
         
         songs.append(Song(name: "Симфония №5",
                           artistName: "Бетховен",
@@ -39,7 +39,7 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
                           artistName: "Unnowed",
                           albumName: "Без альбома",
                           trackName: "classic4",
-                          durations: "06:00"))
+                          durations: "02:40"))
                     
         
     }
