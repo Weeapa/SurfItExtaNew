@@ -336,8 +336,8 @@ class PlayerViewController: UIViewController {
             slider.value = Float(player.currentTime )
         }
         elapsedTimeLabel.text = getFormaterTime(timeInterval: player!.currentTime  )
-//        let remainingTime = player?.duration - player?.currentTime
-//        remainingTimeLabel.text = getFormaterTime(timeInterval: remainingTime)
+        let remainingTime = player!.duration - player!.currentTime
+        remainingTimeLabel.text = getFormaterTime(timeInterval: remainingTime)
     }
     
     @objc private func timeActionSlieder(){
