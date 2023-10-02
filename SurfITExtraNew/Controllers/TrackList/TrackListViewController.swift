@@ -44,15 +44,18 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
-        cell.textLabel?.text = song.name
-        cell.detailTextLabel?.text = song.artistName
         
-        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
-        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 16)
-        
-        cell.accessoryType = .disclosureIndicator
+        cell.artistLabel.text = song.artistName
+        cell.nameLabel.text = song.name
+//        cell.textLabel?.text = song.name
+//        cell.detailTextLabel?.text = song.artistName
+//
+//        cell.textLabel?.font = UIFont(name: "Helvetica-Bold", size: 18)
+//        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 16)
+//
+//        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -69,5 +72,3 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         present(vc, animated: true)
     }
 }
-
-
