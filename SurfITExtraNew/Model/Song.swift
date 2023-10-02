@@ -8,4 +8,7 @@ struct Song{
     let albumName: String
     let trackName: String
     let durations: String
+    var fullName: String {
+            return "\(artistName) - \(name)"
+        }
 }

@@ -52,8 +52,8 @@ class TrackListViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SongTableViewCell
         let song = songs[indexPath.row]
         
-        cell.trackLabel.text = song.name
-        cell.artistLabel.text = song.artistName
+//        cell.trackLabel.text = song.
+        cell.artistLabel.text = song.fullName
         cell.durattionLabel.text = song.durations
        
 //        cell.textLabel?.text = song.name

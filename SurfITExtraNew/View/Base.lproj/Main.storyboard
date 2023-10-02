@@ -28,33 +28,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="artistLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiD-Of-DAa">
-                                                    <rect key="frame" x="10" y="0.0" width="94" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="durattions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtp-KJ-07G">
+                                                    <rect key="frame" x="322.5" y="0.0" width="77.5" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="trackLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ttm-qH-eOe">
-                                                    <rect key="frame" x="112" y="0.0" width="201" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="durattions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtp-KJ-07G">
-                                                    <rect key="frame" x="331" y="0.0" width="63" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="artistLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiD-Of-DAa">
+                                                    <rect key="frame" x="6" y="0.0" width="292" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="292" id="8L1-d6-4xG"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QiD-Of-DAa" firstAttribute="baseline" secondItem="wtp-KJ-07G" secondAttribute="baseline" id="9cb-Ed-AdQ"/>
+                                                <constraint firstItem="QiD-Of-DAa" firstAttribute="leading" secondItem="GAm-hd-yw2" secondAttribute="leading" constant="6" id="DAc-pu-4sX"/>
+                                                <constraint firstItem="wtp-KJ-07G" firstAttribute="top" secondItem="GAm-hd-yw2" secondAttribute="top" id="PDJ-K0-Tmp"/>
+                                                <constraint firstItem="QiD-Of-DAa" firstAttribute="firstBaseline" secondItem="wtp-KJ-07G" secondAttribute="firstBaseline" id="mb9-nt-0Ie"/>
+                                                <constraint firstAttribute="bottom" secondItem="wtp-KJ-07G" secondAttribute="bottom" id="s0h-RP-yuR"/>
+                                                <constraint firstAttribute="trailing" secondItem="wtp-KJ-07G" secondAttribute="trailing" constant="14" id="x3w-77-g5s"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="artistLabel" destination="QiD-Of-DAa" id="kCj-oA-iCU"/>
                                             <outlet property="durattionLabel" destination="wtp-KJ-07G" id="WSj-RW-Vaj"/>
-                                            <outlet property="trackLabel" destination="Ttm-qH-eOe" id="bBJ-VJ-cV0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

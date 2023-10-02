@@ -51,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44030D182ACB2018004035B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				445AEFD12ACB02A500A5AEF4 /* SongTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4430D2A02AC6995B000EAD99 = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +85,6 @@
 				4430D2CD2AC6C1FC000EAD99 /* View */,
 				4430D2C92AC6B34F000EAD99 /* Controllers */,
 				4430D2BA2AC6995E000EAD99 /* Info.plist */,
-				445AEFD12ACB02A500A5AEF4 /* SongTableViewCell.swift */,
 			);
 			path = SurfITExtraNew;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 		4430D2D02AC6C282000EAD99 /* TrackList */ = {
 			isa = PBXGroup;
 			children = (
+				44030D182ACB2018004035B2 /* Cell */,
 				4430D2B02AC6995C000EAD99 /* TrackListViewController.swift */,
 			);
 			path = TrackList;
@@ -187,7 +195,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4430D2A42AC6995B000EAD99 /* Build configuration list for PBXProject "SurfITExtraNew2" */;
+			buildConfigurationList = 4430D2A42AC6995B000EAD99 /* Build configuration list for PBXProject "SurfITExtraNew" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -435,7 +443,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4430D2A42AC6995B000EAD99 /* Build configuration list for PBXProject "SurfITExtraNew2" */ = {
+		4430D2A42AC6995B000EAD99 /* Build configuration list for PBXProject "SurfITExtraNew" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4430D2BB2AC6995E000EAD99 /* Debug */,
