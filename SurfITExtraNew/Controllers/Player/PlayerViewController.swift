@@ -157,6 +157,8 @@ class PlayerViewController: UIViewController {
                 return
             }
             
+            slider.maximumValue = Float(player.duration ?? 0)
+            
             changeImagePlayPause()
             
              player.play()
@@ -286,7 +288,10 @@ class PlayerViewController: UIViewController {
     }
     
     @objc private func updateSlider (_ sender: UISlider){
-        slider.value = Float(player?.currentTime ?? 0)
+        if let player = player {
+            slider.value = Float(player.currentTime ?? 0 )
+        }
+        
     }
     
     @objc private func timeActionSlieder(){
