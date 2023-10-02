@@ -39,6 +39,7 @@ class PlayerViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
@@ -46,6 +47,7 @@ class PlayerViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16, weight: .light)
         label.numberOfLines = 0
         return label
     }()
