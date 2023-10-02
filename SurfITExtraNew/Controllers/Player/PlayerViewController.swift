@@ -16,6 +16,25 @@ class PlayerViewController: UIViewController {
     // MARK: - Subviews
     
     
+    private let elapsedTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.text = "00:00"
+        return label
+    }()
+    
+    private let remainingTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.text = "00:00"
+        return label
+    }()
+    
+    
     private let slider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
@@ -136,6 +155,22 @@ class PlayerViewController: UIViewController {
     }
     
     
+    private func getFormaterTime(timeInterval: TimeInterval) -> String{
+        let mins = timeInterval / 60
+        let secs = timeInterval.truncatingRemainder(dividingBy: 60)
+        let timeFormatter = NumberFormatter()
+        timeFormatter.minimumIntegerDigits = 2
+        timeFormatter.minimumFractionDigits = 0
+        timeFormatter.roundingMode =  .down
+        
+        guard let minsString = timeFormatter.string(from: NSNumber(value: mins)), let secsString = timeFormatter.string(from: NSNumber(value: secs)) else {
+            return "00:00 er"
+             
+        }
+        
+        return "\(minsString):\(secsString)"
+    }
+    
     private func configure(){
         let song = songs[position]
         
@@ -182,6 +217,9 @@ class PlayerViewController: UIViewController {
         holder.addSubview(closeButton)
         holder.addSubview(slider)
         
+        holder.addSubview(elapsedTimeLabel)
+        holder.addSubview(remainingTimeLabel)
+        
         setupConstraints()
       
     }
@@ -218,6 +256,12 @@ class PlayerViewController: UIViewController {
             closeButton.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 5),
             closeButton.heightAnchor.constraint(equalToConstant: 100),
             closeButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            elapsedTimeLabel.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 20),
+            elapsedTimeLabel.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -15),
+            
+            remainingTimeLabel.trailingAnchor.constraint(equalTo: holder.trailingAnchor, constant: -20),
+            remainingTimeLabel.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -15),
             
             slider.topAnchor.constraint(equalTo: albumNameLabel.bottomAnchor, constant: 20),
             slider.leadingAnchor.constraint(equalTo: holder.leadingAnchor, constant: 20),
@@ -291,7 +335,9 @@ class PlayerViewController: UIViewController {
         if let player = player {
             slider.value = Float(player.currentTime )
         }
-        
+        elapsedTimeLabel.text = getFormaterTime(timeInterval: player!.currentTime  )
+//        let remainingTime = player?.duration - player?.currentTime
+//        remainingTimeLabel.text = getFormaterTime(timeInterval: remainingTime)
     }
     
     @objc private func timeActionSlieder(){
