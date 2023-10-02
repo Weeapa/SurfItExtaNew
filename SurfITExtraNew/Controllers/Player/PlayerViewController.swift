@@ -289,7 +289,7 @@ class PlayerViewController: UIViewController {
     
     @objc private func updateSlider (_ sender: UISlider){
         if let player = player {
-            slider.value = Float(player.currentTime ?? 0 )
+            slider.value = Float(player.currentTime )
         }
         
     }
@@ -298,6 +298,7 @@ class PlayerViewController: UIViewController {
         player?.stop()
         player?.currentTime = TimeInterval(slider.value)
         player?.prepareToPlay()
+        changeImagePlayPause()
         player?.play()
     }
     
