@@ -138,6 +138,9 @@ class PlayerViewController: UIViewController {
     
     // MARK: - Private methods
     
+ 
+    
+    
     private func changeImagePlayPause(){
         if player?.isPlaying == true{
             player?.pause()
@@ -152,6 +155,18 @@ class PlayerViewController: UIViewController {
             let symbolImage = UIImage(systemName: "pause.fill", withConfiguration: symbolConfiguration)
             playPauseButton.setImage(symbolImage, for: .normal)
         }
+    }
+    
+    func playNextTrack() {
+        if position < songs.count - 1 {
+            position += 1
+        } else {
+            position = 0
+        }
+        for subview in holder.subviews {
+            subview.removeFromSuperview()
+        }
+        configure()
     }
     
     
@@ -174,6 +189,8 @@ class PlayerViewController: UIViewController {
     private func configure(){
         let song = songs[position]
         
+        player?.delegate = self
+        
         let urlString = Bundle.main.path(forResource: song.trackName, ofType: "mp3")
         
         do {
@@ -181,14 +198,18 @@ class PlayerViewController: UIViewController {
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
             
             guard let urlString = urlString else {
+                print("URL строка пуста")
                 return
             }
             
             player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
             
+            player?.delegate = self
+            
             Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
             
             guard let player = player else {
+                print("Не удалось создать AVAudioPlayer")
                 return
             }
             
@@ -354,6 +375,7 @@ class PlayerViewController: UIViewController {
 
 extension PlayerViewController: AVAudioPlayerDelegate{
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        forwardButtonAction(forwardButton)
+            playNextTrack()
+ 
     }
 }
